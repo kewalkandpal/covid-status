@@ -4,18 +4,17 @@ const tableTd = document.querySelector(".content");
 const coronaUpdate = async()=>{
     let no = 1;
     try{
-        const data = await fetch("https://api.covid19india.org/data.json");
+        const data = await fetch("https://api.rootnet.in/covid19-in/stats/latest");
         const res = await data.json();
-        let result = res.statewise;
+        let result = res.data.regional;
         let ans = result.map((val)=>{
             return`
             <tr>
             <td>${no++}</td>
-            <td>${val.lastupdatedtime}</td>
-            <td>${val.state}</td>
-            <td>${val.active}</td>
-            <td>${val.confirmed}</td>
-            <td>${val.recovered}</td>
+            <td>${res.lastRefreshed}</td>
+            <td>${val.loc}</td>
+            <td>${val.confirmedCasesIndian}</td>
+            <td>${val.discharged}</td>
             <td>${val.deaths}</td>
             </tr>
             `;
